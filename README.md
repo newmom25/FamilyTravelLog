@@ -4,8 +4,15 @@
 The Travel Log Web Application is designed to help users document and manage their travel experiences. Users can log their travels, view past entries, and learn more about the application.
 
 ## Features
+- **Add new log entry**: A button labeled "Add Travel Log" on the main dashboard or travel log list page.
+Clicking the button opens a modal or navigates to a new page with a form.
+Form Fields
+Title: Text input for the trip title.
+Description: Textarea for trip details.
+Location: Text input or dropdown for the location (e.g., city, country).
+Date of Travel: Date picker.
+Photos: File upload for images (optional).
 - **User-friendly Interface**: Navigate easily through the application with a clean and intuitive design.
-- **Log Entries**: Add, view, and delete travel log entries, including details such as location, date, and description.
 - **Responsive Design**: The application is built to be responsive, ensuring a great experience on both desktop and mobile devices.
 - **About Page**: Learn more about the purpose and functionality of the application.
 
