@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import EditTravelLog from './EditTravelLog';
 
 function App() {
   const [travelLogs, setTravelLogs] = useState([
@@ -8,6 +9,14 @@ function App() {
   ]);
 
   const [newLog, setNewLog] = useState({ location: '', date: '', description: '' });
+  const [editingLogId, setEditingLogId] = useState<number | null>(null);
+
+  const handleSaveEdit = (editedLog: typeof travelLogs[0]) => {
+    setTravelLogs(travelLogs.map(log => 
+      log.id === editedLog.id ? editedLog : log
+    ));
+    setEditingLogId(null);
+  };
 
   const handleAddLog = () => {
     if (!newLog.location || !newLog.date || !newLog.description) {
@@ -54,10 +63,26 @@ function App() {
           <p>No travel logs available. Add one above!</p>
         ) : (
           travelLogs.map((log) => (
-            <div key={log.id} className="travel-log">
-              <h3>{log.location}</h3>
-              <p>{log.date}</p>
-              <p>{log.description}</p>
+            <div key={log.id}>
+              {editingLogId === log.id ? (
+                <EditTravelLog
+                  log={log}
+                  onSave={handleSaveEdit}
+                  onCancel={() => setEditingLogId(null)}
+                />
+              ) : (
+                <div className="travel-log">
+                  <h3>{log.location}</h3>
+                  <p>{log.date}</p>
+                  <p>{log.description}</p>
+                  <button
+                    onClick={() => setEditingLogId(log.id)}
+                    className="bg-blue-500 text-white px-3 py-1 rounded mt-2"
+                  >
+                    Edit
+                  </button>
+                </div>
+              )}
             </div>
           ))
         )}
